@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-3 col-md-4 mb-3">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-lg-9 col-md-8 pl-md-0">
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm" *ngIf="item">
+          <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" name="name" class="form-control" placeholder="your name" [(ngModel)]="item.name"
+              #itemName="ngModel" required>
+            <span *ngIf="itemName.errors?.required && itemName.touched" class="small text-danger">name is required</span>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="">Weight</label>
+                <select name="weight" class="form-control" placeholder="weight" [(ngModel)]="item.weight" #itemWeight="ngModel"
+                  required>
+                  <option value="light">Light</option>
+                  <option value="heavy">Heavy</option>
+                </select>
+                <span *ngIf="itemWeight.errors?.required && itemWeight.touched" class="small text-danger">weight is
+                  required</span>
+              </div>
+              <div class="col-md-6">
+                <label for="">Size</label>
+                <select name="size" class="form-control" placeholder="size" [(ngModel)]="item.size" #itemSize="ngModel"
+                  required>
+                  <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                  <option value="large">Large</option>
+                  <option value="extra-large">Extra-Large</option>
+                </select>
+                <span *ngIf="itemSize.errors?.required && itemSize.touched" class="small text-danger">weight is
+                  required</span>
+              </div>
+            </div>
+          </div>
+          <input [disabled]="!f.valid" type="submit" value="Update" class="btn btn-outline-success btn-sm mr-1">
+          <a href="#" routerLink="/list" class="btn btn-outline-danger btn-sm">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
